@@ -58,19 +58,26 @@ for button_text in buttons:
         col = 0
         row += 1
 
-
+# Função para checar atualização usando a API do GitHub
 def checar_atualizacao(version):
-    url = "https://github.com/GabrielOgliari/Calculadora/tags"
-    response = requests.get(url)
-    # print(response.text)
-    tags = response.json()
-    if tags:
-        return tags[0]["name"]  # Pega a tag mais recente
-    return None
-
-
+    url = "https://api.github.com/repos/GabrielOgliari/Calculadora/tags"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Verifica se houve algum erro na requisição
+        tags = response.json()
+        if tags:
+            return tags[0]["name"]  # Pega a tag mais recente
+        return None
+    except requests.exceptions.RequestException as e:
+        print(f"Erro ao checar atualização: {e}")
+        return None
 
 if __name__ == "__main__":
     version = "1.0"
-    checar_atualizacao(version)
+    latest_version = checar_atualizacao(version)
+    if latest_version:
+        print(f"Última versão disponível: {latest_version}")
+        
+    else:
+        print("Não foi possível checar a atualização.")
     root.mainloop()
