@@ -1,4 +1,9 @@
 import tkinter as tk
+from tkinter import messagebox
+import subprocess
+import sys
+import os
+
 import requests
 
 # Função para adicionar o número ou operador na tela
@@ -71,12 +76,25 @@ def checar_atualizacao(version):
     except requests.exceptions.RequestException as e:
         print(f"Erro ao checar atualização: {e}")
         return None
+    
+
 
 if __name__ == "__main__":
     version = "1.0"
     latest_version = checar_atualizacao(version)
     if latest_version:
-        print(f"Última versão disponível: {latest_version}")
+        # pedir se quer atualizar
+        resposta = messagebox.askyesno("Atualização Disponível", "Uma nova versão está disponível. Deseja atualizar agora?")
+        if resposta:
+            print("Atualizando...")
+            path_atualizacao = os.path.abspath("atualizacao.py")
+            print(path_atualizacao)
+            # path_atualizacao = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+            subprocess.Popen([sys.executable, path_atualizacao], shell=True)
+            # root.destroy()
+            sys.exit(0)
+
+        # print(f"Última versão disponível: {latest_version}")
         
     else:
         print("Não foi possível checar a atualização.")
