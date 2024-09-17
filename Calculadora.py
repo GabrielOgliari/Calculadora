@@ -1,6 +1,5 @@
 import tkinter as tk
-from atualizacao import Atualizacao
-
+import requests
 
 # Função para adicionar o número ou operador na tela
 def click_button(event):
@@ -59,20 +58,19 @@ for button_text in buttons:
         col = 0
         row += 1
 
-# Executando a janela principal
-def is_update_available(APP_VERSION):
-    latest_version = Atualizacao.get_latest_release_version()
-    if latest_version and latest_version > APP_VERSION:
-        print(f"Nova versão disponível: {latest_version}")
-        return True
-    else:
-        print("Nenhuma atualização disponível.")
-        return False
+
+def checar_atualizacao(version):
+    url = "https://github.com/GabrielOgliari/Calculadora/tags"
+    response = requests.get(url)
+    # print(response.text)
+    tags = response.json()
+    if tags:
+        return tags[0]["name"]  # Pega a tag mais recente
+    return None
+
 
 
 if __name__ == "__main__":
-    APP_VERSION = 1.0
-    if is_update_available(APP_VERSION):
-        Atualizacao.download_update()
-        Atualizacao.extract_update()
+    version = "1.0"
+    checar_atualizacao(version)
     root.mainloop()
