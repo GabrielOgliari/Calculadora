@@ -30,7 +30,7 @@ def clear_entry(event):
 
 # Criando a janela principal
 root = tk.Tk()
-root.title("Calculadora")
+root.title("MORETTO LINDOOOOOO")
 
 # Criando a entrada de texto onde os números e resultados aparecerão
 entry = tk.Entry(root, width=16, font=("Arial", 24), borderwidth=2, relief="solid")
@@ -80,7 +80,7 @@ def checar_atualizacao(version):
 
 
 if __name__ == "__main__":
-    version = "1.0"
+    version = "1.1"
     latest_version = checar_atualizacao(version)
     if latest_version == version:
         # pedir se quer atualizar
