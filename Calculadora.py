@@ -82,7 +82,7 @@ def checar_atualizacao(version):
 if __name__ == "__main__":
     version = "1.0"
     latest_version = checar_atualizacao(version)
-    if latest_version:
+    if latest_version == version:
         # pedir se quer atualizar
         resposta = messagebox.askyesno("Atualização Disponível", "Uma nova versão está disponível. Deseja atualizar agora?")
         if resposta:
