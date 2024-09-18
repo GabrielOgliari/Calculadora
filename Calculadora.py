@@ -80,7 +80,7 @@ def checar_atualizacao(version):
 
 
 if __name__ == "__main__":
-    version = "1.0"
+    version = "1.1"
     latest_version = checar_atualizacao(version)
     print(f"Versão : {latest_version}")
     if latest_version != version:
