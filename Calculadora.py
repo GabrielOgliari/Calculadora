@@ -14,7 +14,7 @@ def click_button(event):
     entry.insert(tk.END, new_text)
 
 # Função para avaliar a expressão e mostrar o resultado
-def evaluate_expression(event):
+def evaluate_expression():
     expression = entry.get()
     try:
         result = str(eval(expression))
