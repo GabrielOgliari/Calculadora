@@ -30,7 +30,7 @@ def clear_entry(event):
 
 # Criando a janela principal
 root = tk.Tk()
-root.title("Calculadora")
+root.title("MORETTO LINDOOOOOOOOOOO")
 
 # Criando a entrada de texto onde os números e resultados aparecerão
 entry = tk.Entry(root, width=16, font=("Arial", 24), borderwidth=2, relief="solid")
