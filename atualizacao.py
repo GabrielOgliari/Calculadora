@@ -131,7 +131,7 @@ if __name__ == "__main__":
         sucesso = baixar_e_atualizar(download_url)
         
         if sucesso:
-            app_path = os.path.abspath("Calculadora.py")  # O caminho do script da aplicação
+            app_path = os.path.abspath("Calculadora.exe")  # O caminho do script da aplicação
             main(app_path)  # Inicia o processo de atualização
         else:
             print("Falha ao baixar ou extrair a atualização.")

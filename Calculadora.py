@@ -87,7 +87,7 @@ if __name__ == "__main__":
         resposta = messagebox.askyesno("Atualização Disponível", "Uma nova versão está disponível. Deseja atualizar agora?")
         if resposta:
             print("Atualizando...")
-            path_atualizacao = os.path.abspath("atualizacao.py")
+            path_atualizacao = os.path.abspath("atualizacao.exe")
             print(path_atualizacao)
             # path_atualizacao = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
             subprocess.Popen([sys.executable, path_atualizacao], shell=True)
