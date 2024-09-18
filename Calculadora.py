@@ -30,7 +30,7 @@ def clear_entry(event):
 
 # Criando a janela principal
 root = tk.Tk()
-root.title("MORETTO LINDOOOOOOO")   
+root.title("Calculadora")   
 
 # Criando a entrada de texto onde os números e resultados aparecerão
 entry = tk.Entry(root, width=16, font=("Arial", 24), borderwidth=2, relief="solid")
@@ -71,7 +71,7 @@ def checar_atualizacao(version):
         response.raise_for_status()  # Verifica se houve algum erro na requisição
         tags = response.json()
         if tags:
-            return tags[-1]["name"]  # Pega a tag mais recente
+            return tags[0]["name"]  # Pega a tag mais recente
         return None
     except requests.exceptions.RequestException as e:
         print(f"Erro ao checar atualização: {e}")
@@ -80,7 +80,7 @@ def checar_atualizacao(version):
 
 
 if __name__ == "__main__":
-    version = "v1.1"
+    version = "v1.0"
     latest_version = checar_atualizacao(version)
     # latest_version.strip()
     print(f"Versão : {latest_version}")
