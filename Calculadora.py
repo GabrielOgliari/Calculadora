@@ -4,7 +4,9 @@ import subprocess
 import sys
 import os
 
-import requests
+import http.client
+
+# import requests
 
 # Função para adicionar o número ou operador na tela
 def click_button(event):
@@ -14,7 +16,7 @@ def click_button(event):
     entry.insert(tk.END, new_text)
 
 # Função para avaliar a expressão e mostrar o resultado
-def evaluate_expression():
+def evaluate_expression(event):
     expression = entry.get()
     try:
         result = str(eval(expression))
@@ -30,7 +32,7 @@ def clear_entry(event):
 
 # Criando a janela principal
 root = tk.Tk()
-root.title("MORETTO LINDOOOO")   
+root.title("Calculadora")
 
 # Criando a entrada de texto onde os números e resultados aparecerão
 entry = tk.Entry(root, width=16, font=("Arial", 24), borderwidth=2, relief="solid")
@@ -67,20 +69,23 @@ for button_text in buttons:
 def checar_atualizacao(version):
     url = "https://api.github.com/repos/GabrielOgliari/Calculadora/tags"
     try:
-        response = requests.get(url)
+        # response = requests.get(url)
+        conn = http.client.HTTPSConnection("api.github.com")
+        conn.request("GET", "/repos/GabrielOgliari/Calculadora/releases/latest")
+        response = conn.getresponse()
         response.raise_for_status()  # Verifica se houve algum erro na requisição
         tags = response.json()
         if tags:
             return tags[0]["name"]  # Pega a tag mais recente
         return None
-    except requests.exceptions.RequestException as e:
+    except Exception as e:
         print(f"Erro ao checar atualização: {e}")
         return None
     
 
 
 if __name__ == "__main__":
-    version = "v1.1"
+    version = "v1.0"
     latest_version = checar_atualizacao(version)
     # latest_version.strip()
     print(f"Versão : {latest_version}")
