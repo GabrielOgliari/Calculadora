@@ -41,10 +41,10 @@ entry.grid(row=0, column=0, columnspan=4)
 
 # Lista de botões da calculadora
 buttons = [
-    '7', '8', '9', '/',
-    '4', '5', '6', '*',
-    '1', '2', '3', '-',
-    'C', '0', '=', '+'
+    'M', 'O', 'R', 'E',
+    'T', 'T', 'O', ' ',
+    'L', 'I', 'N', 'D',
+    'O', 'O', 'O', 'O'
 ]
 
 # Adicionando os botões na interface
