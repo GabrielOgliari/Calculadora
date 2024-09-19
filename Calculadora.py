@@ -33,7 +33,7 @@ def clear_entry(event):
 
 # Criando a janela principal
 root = tk.Tk()
-root.title("MORETTO LINDOOOOOO")
+root.title("Calculadora")
 
 # Criando a entrada de texto onde os números e resultados aparecerão
 entry = tk.Entry(root, width=16, font=("Arial", 24), borderwidth=2, relief="solid")
@@ -95,7 +95,7 @@ def checar_atualizacao(version):
 
 
 if __name__ == "__main__":
-    version = "v1.1"
+    version = "v1.0"
     latest_version = checar_atualizacao(version)
     # latest_version.strip()
     print(f"Versão : {latest_version}")
@@ -107,7 +107,8 @@ if __name__ == "__main__":
             path_atualizacao = os.path.abspath("atualizacao.exe")
             print(path_atualizacao)
             # path_atualizacao = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
-            subprocess.Popen([sys.executable, path_atualizacao], shell=True)
+            # subprocess.Popen([sys.executable, path_atualizacao], shell=True)
+            subprocess.Popen([path_atualizacao], shell=True)
             # root.destroy()
             sys.exit(0)
 
