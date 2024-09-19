@@ -3,6 +3,7 @@ from tkinter import messagebox
 import subprocess
 import sys
 import os
+import json
 
 import http.client
 
@@ -67,16 +68,25 @@ for button_text in buttons:
 
 # Função para checar atualização usando a API do GitHub
 def checar_atualizacao(version):
-    url = "https://api.github.com/repos/GabrielOgliari/Calculadora/tags"
+    url = "/repos/GabrielOgliari/Calculadora/releases/latest"
     try:
-        # response = requests.get(url)
         conn = http.client.HTTPSConnection("api.github.com")
-        conn.request("GET", "/repos/GabrielOgliari/Calculadora/releases/latest")
+        headers = {
+            "User-Agent": "Mozilla/5.0"  # Cabeçalho necessário para acessar a API do GitHub
+        }
+        conn.request("GET", url, headers=headers)
         response = conn.getresponse()
-        response.raise_for_status()  # Verifica se houve algum erro na requisição
-        tags = response.json()
-        if tags:
-            return tags[0]["name"]  # Pega a tag mais recente
+        
+        if response.status != 200:
+            print(f"Erro ao checar atualização: {response.status} {response.reason}")
+            return None
+        
+        data = response.read()
+        tags = json.loads(data)
+        
+        if "tag_name" in tags:
+            return tags["tag_name"]  # Pega a tag mais recente
+        
         return None
     except Exception as e:
         print(f"Erro ao checar atualização: {e}")
@@ -103,6 +113,4 @@ if __name__ == "__main__":
 
         # print(f"Última versão disponível: {latest_version}")
         
-    else:
-        print("Não foi possível checar a atualização.")
     root.mainloop()
