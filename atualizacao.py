@@ -3,10 +3,7 @@ import os
 import time
 import shutil
 import subprocess
-# import requests
 import zipfile
-import tkinter as tk
-from tkinter import messagebox
 import http.client
 import json
 from urllib.parse import urlparse
@@ -55,7 +52,7 @@ def main(app_path):
             os.remove("update.zip")
 
         # Reinicia a aplicação
-        subprocess.Popen([sys.executable, app_path], shell=True)
+        subprocess.Popen([app_path], shell=True)
         sys.exit(0)
     except Exception as e:
         print(f"Erro durante a atualização: {e}")
