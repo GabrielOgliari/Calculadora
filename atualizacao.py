@@ -74,8 +74,8 @@ def mover_arquivos_para_app_dir(temp_dir, app_dir):
             dest_path = os.path.join(app_dir, filename)
 
             # Ignora o script atual e a pasta temporária
-            if os.path.isdir(src_path):
-                shutil.copytree(src_path, dest_path, dirs_exist_ok=True)
+            if filename == 'atualizacao.py' or filename == 'atualizacao.exe':
+                continue
             else:
                 shutil.move(src_path, dest_path)
 
